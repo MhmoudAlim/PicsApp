@@ -1,6 +1,6 @@
 package com.mahmoudalim.picsapp.api
 
-import com.mahmoudalim.picsapp.data.UnsplashResponse
+import com.mahmoudalim.picsapp.data.models.UnsplashResponse
 import com.mahmoudalim.picsapp.util.constants.Companion.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Headers

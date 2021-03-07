@@ -1,4 +1,4 @@
-package com.mahmoudalim.picsapp.data
+package com.mahmoudalim.picsapp.data.models
 
 import com.mahmoudalim.picsapp.data.models.UnsplashPhoto
 
