@@ -1,4 +1,4 @@
-package com.mahmoudalim.picsapp.models
+package com.mahmoudalim.picsapp.data.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -1,4 +1,4 @@
-package com.mahmoudalim.picsapp.models
+package com.mahmoudalim.picsapp.data.models
 
 import android.os.Parcelable
 import com.mahmoudalim.picsapp.util.constants.Companion.APP_NAME
