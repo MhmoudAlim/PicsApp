@@ -7,5 +7,7 @@ class constants {
         const val APP_NAME = "PicsApp"
         const val API_KEY = BuildConfig.UNSPLASH_ACCESS_KEY
         const val BASE_URL = "https://api.unsplash.com/"
+        const val STARTING_PAGE_INDEX = 1
+        const val DEFAULT_QUERY = "dogs"
     }
 }
