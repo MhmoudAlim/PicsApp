@@ -1,7 +1,11 @@
 package com.mahmoudalim.picsapp.util
 
+import com.mahmoudalim.picsapp.BuildConfig
+
 class constants {
     companion object {
         const val APP_NAME = "PicsApp"
+        const val API_KEY = BuildConfig.UNSPLASH_ACCESS_KEY
+        const val BASE_URL = "https://api.unsplash.com/"
     }
 }
