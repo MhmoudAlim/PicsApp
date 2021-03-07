@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mahmoudalim.picsapp.R
+import com.mahmoudalim.picsapp.adapter.UnsplashPhotoAdapter
 import com.mahmoudalim.picsapp.databinding.FragmentGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,8 +19,15 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentGalleryBinding.bind(view)
+        val adapter = UnsplashPhotoAdapter()
+
+        binding.apply {
+            recyclerView.setHasFixedSize(true)
+            recyclerView.adapter = adapter
+        }
 
         viewModel.photos.observe(viewLifecycleOwner) {
+            adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
     }
 }
