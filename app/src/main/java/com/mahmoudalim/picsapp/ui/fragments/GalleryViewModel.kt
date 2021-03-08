@@ -13,13 +13,13 @@ class GalleryViewModel @ViewModelInject constructor(
     private val repository: UnsplashRepo
 ) : ViewModel() {
 
-    private val currenQtuery = MutableLiveData(DEFAULT_QUERY)
+    private val currentQuery = MutableLiveData(DEFAULT_QUERY)
 
-    val photos = currenQtuery.switchMap {
+    val photos = currentQuery.switchMap {
         repository.getSearchResult(it).cachedIn(viewModelScope)
     }
 
     fun searchPhotos(query: String) {
-        currenQtuery.value = query
+        currentQuery.value = query
     }
 }
