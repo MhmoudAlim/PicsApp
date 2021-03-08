@@ -23,7 +23,7 @@ class UnsplashPhotoAdapter :
                     .load(photo.urls.regular)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_error)
+                    .error(R.drawable.ic_baseline_error)
                     .into(ivPhoto)
 
                 tvUsername.text = photo.user.username
