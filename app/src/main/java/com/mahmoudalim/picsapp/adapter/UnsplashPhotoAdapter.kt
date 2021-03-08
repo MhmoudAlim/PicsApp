@@ -27,6 +27,8 @@ class UnsplashPhotoAdapter :
                     .into(ivPhoto)
 
                 tvUsername.text = photo.user.username
+
+                tvPublishedAt.text = photo.created_at?.substring(0 , 10)
             }
 
         }
