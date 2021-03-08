@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mahmoudalim.picsapp.R
 import com.mahmoudalim.picsapp.adapter.UnsplashPhotoAdapter
+import com.mahmoudalim.picsapp.adapter.UnsplashPhotoLoadStateAdapter
 import com.mahmoudalim.picsapp.databinding.FragmentGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +24,11 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
 
         binding.apply {
             recyclerView.setHasFixedSize(true)
-            recyclerView.adapter = adapter
+            recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
+                    header = UnsplashPhotoLoadStateAdapter { adapter.retry() },
+                    footer = UnsplashPhotoLoadStateAdapter { adapter.retry() }
+            )
+
         }
 
         viewModel.photos.observe(viewLifecycleOwner) {

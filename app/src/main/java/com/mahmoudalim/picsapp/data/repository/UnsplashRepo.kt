@@ -15,8 +15,8 @@ class UnsplashRepo @Inject constructor(
     fun getSearchResult(query: String) =
         Pager(
             config = PagingConfig(
-                pageSize = 10,
-                maxSize = 50,
+                pageSize = 20,
+                maxSize = 100,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { PicsPagingSource(unsplashApi, query) }
