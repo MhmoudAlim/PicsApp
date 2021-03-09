@@ -11,7 +11,9 @@
         tools:layout="@layout/fragment_gallery">
         <action
             android:id="@+id/action_galleryFragment2_to_photoDetailsFragment"
-            app:destination="@id/photoDetailsFragment" />
+            app:destination="@id/photoDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/photoDetailsFragment"
