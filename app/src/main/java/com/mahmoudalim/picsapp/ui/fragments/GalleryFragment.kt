@@ -8,16 +8,19 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.mahmoudalim.picsapp.R
 import com.mahmoudalim.picsapp.adapter.UnsplashPhotoAdapter
 import com.mahmoudalim.picsapp.adapter.UnsplashPhotoLoadStateAdapter
+import com.mahmoudalim.picsapp.data.models.UnsplashPhoto
 import com.mahmoudalim.picsapp.databinding.FragmentGalleryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_gallery.*
 
 @AndroidEntryPoint
-class GalleryFragment : Fragment(R.layout.fragment_gallery) {
+class GalleryFragment : Fragment(R.layout.fragment_gallery),
+        UnsplashPhotoAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentGalleryBinding
 
@@ -26,7 +29,7 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentGalleryBinding.bind(view)
-        val photoAdapter = UnsplashPhotoAdapter()
+        val photoAdapter = UnsplashPhotoAdapter(this)
         setHasOptionsMenu(true)
 
         setupRecycler(photoAdapter)
@@ -38,6 +41,12 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
         setupLoadStateOrSearch(photoAdapter)
     }
 
+    override fun OnItemClick(photo: UnsplashPhoto) {
+        val action =
+            GalleryFragmentDirections.actionGalleryFragment2ToPhotoDetailsFragment(photo)
+
+        findNavController().navigate(action)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
@@ -72,8 +81,8 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
 
                 //empty view or no search results found
                 if (it.source.refresh is LoadState.NotLoading &&
-                        it.append.endOfPaginationReached &&
-                        adapter.itemCount == 0
+                    it.append.endOfPaginationReached &&
+                    adapter.itemCount == 0
                 ) {
                     recyclerView.isVisible = false
                     tvNoresults.isVisible = true
@@ -89,8 +98,8 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
             recyclerView.setHasFixedSize(true)
             recyclerView.itemAnimator = null
             recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
-                    header = UnsplashPhotoLoadStateAdapter { adapter.retry() },
-                    footer = UnsplashPhotoLoadStateAdapter { adapter.retry() }
+                header = UnsplashPhotoLoadStateAdapter { adapter.retry() },
+                footer = UnsplashPhotoLoadStateAdapter { adapter.retry() }
             )
             buttonRetry.setOnClickListener {
                 adapter.retry()

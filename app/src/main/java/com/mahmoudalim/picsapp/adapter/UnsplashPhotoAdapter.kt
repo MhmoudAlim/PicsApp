@@ -1,7 +1,9 @@
 package com.mahmoudalim.picsapp.adapter
 
 import android.view.LayoutInflater
+import android.view.OrientationEventListener
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,11 +13,23 @@ import com.mahmoudalim.picsapp.R
 import com.mahmoudalim.picsapp.data.models.UnsplashPhoto
 import com.mahmoudalim.picsapp.databinding.ItemUnsplashBinding
 
-class UnsplashPhotoAdapter :
+class UnsplashPhotoAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<UnsplashPhoto, UnsplashPhotoAdapter.PhotoViewHolder>(differCallback) {
 
     inner class PhotoViewHolder(private val binding: ItemUnsplashBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.OnItemClick(item)
+                    }
+                }
+            }
+        }
 
         fun bind(photo: UnsplashPhoto) {
             binding.apply {
@@ -28,11 +42,15 @@ class UnsplashPhotoAdapter :
 
                 tvUsername.text = photo.user.username
 
-                tvPublishedAt.text = photo.created_at?.substring(0 , 10)
+                tvPublishedAt.text = photo.created_at?.substring(0, 10)
             }
 
         }
 
+    }
+
+    interface OnItemClickListener {
+        fun OnItemClick(photo: UnsplashPhoto)
     }
 
     companion object {

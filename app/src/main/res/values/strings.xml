@@ -6,4 +6,7 @@
     <string name="published_at">Published_At</string>
     <string name="results_error">Results Couldn\'t be loaded</string>
     <string name="search">Search</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="photo_caption">Photo Caption</string>
+    <string name="photo_by">Photo by SOMEONE on Unsplash</string>
 </resources>

@@ -8,5 +8,18 @@
         android:id="@+id/galleryFragment2"
         android:name="com.mahmoudalim.picsapp.ui.fragments.GalleryFragment"
         android:label="fragment_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_galleryFragment2_to_photoDetailsFragment"
+            app:destination="@id/photoDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoDetailsFragment"
+        android:name="com.mahmoudalim.picsapp.ui.fragments.PhotoDetailsFragment"
+        android:label="fragment_photo_details"
+        tools:layout="@layout/fragment_photo_details" >
+        <argument
+            android:name="photo"
+            app:argType="com.mahmoudalim.picsapp.data.models.UnsplashPhoto" />
+    </fragment>
 </navigation>
