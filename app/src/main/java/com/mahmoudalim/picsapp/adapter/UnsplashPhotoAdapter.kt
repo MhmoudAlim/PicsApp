@@ -1,9 +1,7 @@
 package com.mahmoudalim.picsapp.adapter
 
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
